@@ -1,40 +1,68 @@
 <div class="row">
-  <div class="col-md-4 col-md-offset-4 text-center">
+  <div class="col-md-3">
+    <ul class="sidebar-list">
+      <li class="sidebar-item">
+        <%= link_to 'プロフィールを編集', edit_user_registration_path, class: 'sidebar-link active' %>
+      </li>
+    </ul>
+    <br>
 
-    <h2>ユーザ情報を編集</h2>
+    <%= link_to '自分のプロフィールを見る', user_path(current_user.id), class: 'btn btn-default wide' %>
+  </div>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= devise_error_messages! %>
+  <div class="col-md-7 text-center">
+    <div class="panel panel-default">
+      <div class="panel-heading">マイプロフィール</div>
+        <div class="panel-body">
+          <div class="container">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= devise_error_messages! %>
 
-      <div class="form-group">
-        <%= f.text_field :fullname, autofocus: true, class: "form-control", placeholder: "名前" %>
+
+
+            <div class="form-group">
+              <%= f.text_field :fullname, autofocus: true, class: "form-control", placeholder: "名前" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "メールアドレス" %>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <span class="btn btn-default btn-file">
+                    画像をアップ
+                    <%= f.file_field :avatar %>
+                  </span>
+                </div>
+              </div>  
+            </div>
+
+            <div class="form-group">
+              <%= f.text_field :phone_number, class: "form-control", placeholder: "電話番号" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.text_area :description, rows:5, col:25, class: "form-control", placeholder: "自己紹介" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "パスワード（変更したい場合に入力）" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "再確認用のパスワード（変更したい場合に入力）" %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "更新する", class: "btn btn-primary" %>
+            </div>
+
+            <% end %>
+          </div>
+        </div>
       </div>
-
-      <div class="form-group">
-        <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "メールアドレス" %>
-      </div>
-
-      <div class="form-group">   
-        <%= f.file_field :avatar %>
-      </div>
-    
-      <div class="form-group">
-        <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "パスワード" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "再確認用のパスワード" %>
-      </div>
-
-      <div class="form-group">
-        <br />
-        <%= f.password_field :current_password, autocomplete: "off", class: "form-control", placeholder: "変更確認用にパスワードを入力" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "更新する", class: "btn btn-primary" %>
-      </div>
-    <% end %>
 
   </div>
 </div>
