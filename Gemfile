@@ -39,8 +39,11 @@ gem 'jbuilder', '~> 2.5'
   gem 'devise', git: 'https://github.com/gogovan/devise.git', branch: 'rails-5.1'
   gem 'erubis'
   gem 'devise-i18n'
+  gem 'rails-i18n'
 
   gem 'paperclip'
+  
+  gem 'toastr-rails'
   
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
