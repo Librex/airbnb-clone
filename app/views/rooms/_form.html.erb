@@ -1,0 +1,158 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    AirBnbのホストになる
+  </div>
+  <div class="panel-body">
+    <div class="container">
+      <%= form_for @room, html: {multipart: true} do |f| %>
+
+        <div class="row">
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <label>住宅のスタイル</label>
+              <%= f.select :home_type, [["マンション","Mansion"], ["アパート","apartment"],
+                ["民宿", "Bed & Breakfast"]], id: "home_type", 
+                prompt: "選択してください。", class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <label>宿泊のタイプ</label>
+              <%= f.select :room_type, [["貸切","all rooms"], ["個室","private room"],
+                ["シェアルーム","room share"]],
+                prompt: "選択してください。", class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <label>宿泊可能人数</label>
+              <%= f.select :accommodate, [["１人",1], ["２人",2],
+                ["３人", 3], ["４人",4], ["５人",5], ["６人",6]], 
+                prompt: "選択してください。", class: "form-control" %>
+            </div>
+          </div>    
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <label>部屋数</label>
+              <%= f.select :bed_room, [["１部屋",1], ["２部屋",2],
+                ["３部屋", 3], ["４部屋以上",4]], 
+                prompt: "数を入力してください。", class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <label>バスルーム</label>
+                <%= f.select :bath_room, [["１つ",1], ["２つ",2],
+                  ["３つ", 3], ["４つ以上",4]], 
+                  prompt: "数を入力してください。", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label>住宅名（表示するタイトル）</label>
+            <%= f.text_field :listing_name, placeholder: "表示するタイトル", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label>概要</label>
+              <%= f.text_area :summary, rows:4, placeholder: "近くにある施設の紹介、周りの雰囲気などを説明してください。",
+                class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label>住所</label>
+            <%= f.text_field :address, placeholder: "住所を入力してください。", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="btn btn-default btn-file">
+                <i class = "fa fa-cloud-upload fa-lg"></i> 写真のアップロード
+                <%= file_field_tag "images[]", type: :file, multiple: true %>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= f.check_box :is_wifi %> Wifi
+            </div>
+
+            <div class="form-group">
+              <%= f.check_box :is_tv %> テレビ
+            </div>
+
+            <div class="form-group">
+              <%= f.check_box :is_closet %> タンス
+            </div>
+
+            <div class="form-group">
+              <%= f.check_box :is_shampoo %> シャンプー
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= f.check_box :is_kitchen %> キッチン
+            </div>
+
+            <div class="form-group">
+              <%= f.check_box :is_breakfast %> 朝食
+            </div>
+
+            <div class="form-group">
+              <%= f.check_box :is_heating %> 暖房設備
+            </div>
+
+            <div class="form-group">
+              <%= f.check_box :is_air %> エアコン
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>宿泊価格</label>
+              <div class="input-group">
+                <%= f.text_field :price, placeholder: "例: 8000（半角）円", class: "form-control" %>
+                <div class="input-group-addon">円</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <%= f.check_box :active %> 情報を公開しますか？
+          </div>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "公開する情報を確認する", class: "btn btn-primary"%>
+          <% if controller.action_name == 'edit' && Rails.env.development? %>
+            <br /><br /><br />
+            <%= link_to "住宅情報を削除します。", room_path(@room), method: :delete, data: {confirm: "削除しますか？"} %>
+          <% end %> 
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
