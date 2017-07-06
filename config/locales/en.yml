@@ -31,3 +31,30 @@
 
 en:
   hello: "Hello world"
+
+jp:
+  activerecord:
+    errors:
+      models:
+        room:
+          attributes:
+            price:
+            address:
+            summary:
+            listing_name:
+            bath_room:
+            bed_room:
+            accommodate:
+            room_type:
+            home_type:
+  attributes:
+    room:
+      price: "値段"
+      address:  "アドレス" 
+      summary: "詳細説明"
+      listing_name: "公開名"
+      bath_room: "バスルーム"
+      bed_room: "ベッドルーム"
+      accommodate: "収容人数"
+      room_type: "ルームタイプ"
+      home_type: "住宅タイプ"

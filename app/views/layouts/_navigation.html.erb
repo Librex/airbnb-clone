@@ -12,6 +12,13 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse right">
       <ul class="nav navbar-nav navbar-right">
+        
+        <li>
+          <%= link_to new_room_path do %>
+            <i class="fa fa-home fa-lg"></i> ホストになる
+          <% end %>
+        </li>
+        
         <% if (!user_signed_in?) %>
           <li><%= link_to '会員登録', new_user_registration_path %></li>
           <li><%= link_to 'ログイン', new_user_session_path %></li>
