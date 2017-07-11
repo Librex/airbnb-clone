@@ -42,7 +42,8 @@ gem 'jbuilder', '~> 2.5'
   gem 'rails-i18n'
 
   gem 'paperclip'
-  
+  gem 'paperclip-cloudinary'
+
   gem 'toastr-rails'
   gem 'font-awesome-sass'
   
