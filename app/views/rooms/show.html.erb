@@ -1,0 +1,99 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+    <!-- メイン画像 -->
+    <div class="row">
+      <div class="col-md-12">
+        <%= image_tag @photos[0].image.url(), class:"img-responsive" if @photos.length >0 %>
+      </div>
+    </div>
+
+    <br>
+
+    <!-- インフォメーション -->
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-3 text-center">
+            <%= image_tag avatar_url(@room.user), class:"img-circle avatar-large" %>
+            <br>
+            <br>
+            <%= @room.user.fullname %>
+          </div>
+          <div class="col-md-9">
+            <h4><%= @room.listing_name %></h4>
+            <%= @room.address %>
+            <div class="row text-center row-space-1">
+              <div class="col-sm-3">
+                <i class="fa fa-home fa-2x"></i>
+              </div>
+              <div class="col-sm-3">
+                <i class="fa fa-users fa-2x"></i>
+              </div>
+              <div class="col-sm-3">
+                <i class="fa fa-bed fa-2x"></i>
+              </div>
+              <div class="col-sm-3">
+                <i class="fa fa-bath fa-2x"></i>
+              </div>
+            </div>
+            <div class="row text-center">
+              <div class="col-sm-3">
+                <%= @room.home_type %>
+              </div>
+              <div class="col-sm-3">
+                <%= @room.accommodate %> <%= @room.accommodate > 1 ? "名" : "名" %>
+              </div>
+              <div class="col-sm-3">
+                <%= @room.bed_room %> <%= @room.bed_room > 1 ? "ベッド" : "ベッド" %>
+              </div>
+              <div class="col-sm-3">
+                <%= @room.bath_room %> <%= @room.bath_room > 1 ? "バスルーム" : "バスルーム" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+                    <!-- 予約フォーム -->
+      </div>    
+    </div>
+
+    <!-- 説明 -->
+    <div class="row">
+      <div class="col-md-12">
+        <h2>この施設について</h2>
+        <p><%= @room.summary %></p>
+      </div>
+    </div>
+
+    <!-- 設備 -->
+    <div class="row">
+      <div class="col-md-2">
+        <p>設備</p>
+      </div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="equipments">
+              <li class="<%= 'text-line-through' if !@room.is_wifi %>">Wifi</li>
+              <li class="<%= 'text-line-through' if !@room.is_tv %>">テレビ</li>
+              <li class="<%= 'text-line-through' if !@room.is_closet %>">クローゼット</li>
+              <li class="<%= 'text-line-through' if !@room.is_shampoo %>">シャンプー</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="equipments">
+              <li class="<%= 'text-line-through' if !@room.is_kitchen %>">キッチン</li>
+              <li class="<%= 'text-line-through' if !@room.is_breakfast %>">朝食</li>
+              <li class="<%= 'text-line-through' if !@room.is_heating %>">暖房設備</li>
+              <li class="<%= 'text-line-through' if !@room.is_air %>">エアコン</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
