@@ -1,6 +1,7 @@
 class Room < ApplicationRecord
   belongs_to :user
   has_many :photos
+  has_many :reservations
 
   validates :room_type, presence: true
   validates :accommodate, presence: true
