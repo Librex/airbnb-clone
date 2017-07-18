@@ -7,3 +7,18 @@
 
   <%= f.submit "入力した内容で予約する", class: "btn btn-primary" %>
 <% end %>
+
+<script>
+  $(function() {
+    $('#reservation_start_date').datepicker({
+      dateFormat: 'dd-mm-yy',
+      monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+      dayNamesMin: ['日', '月', '火', '水', '木', '金', '土']                              
+    });
+    $('#reservation_end_date').datepicker({
+      dateFormat: 'dd-mm-yy',
+      monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+      dayNamesMin: ['日', '月', '火', '水', '木', '金', '土']                                                                             
+    });
+  });
+</script>
