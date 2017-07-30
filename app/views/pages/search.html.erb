@@ -1,0 +1,160 @@
+<div id="wrapper">
+  <div id="sidebar">
+    <div id="widget">
+    </div>
+  </div>
+  
+  <div id="article">
+    <div class="row">
+      <div class="col-md-12">
+        <%= search_form_for @search, url: search_path do |f| %>
+          <div class="row">
+            <div class="col-md-3">
+              <%= text_field_tag :start_date, params[:start_date], placeholder:"到着日", class:"form-control" %>
+            </div>
+            <div class="col-md-3">
+              <%= text_field_tag :end_date, params[:end_date], placeholder:"出発日", class:"form-control" %>
+            </div>
+            <div class="col-md-3">
+              <%= f.text_field :price_gteq, placeholder: "予算（最低）", class: "form-control" %>
+            </div>
+            <div class="col-md-3">
+              <%= f.text_field :price_lteq, placeholder: "予算（最大）", class: "form-control" %>
+            </div>
+          </div>
+                        
+          <hr>
+                        
+          <div class="row">
+            <div class="col-md-4">
+              <%= check_box_tag "q[room_type_eq_any][]","貸切" %> 貸切
+            </div>
+            <div class="col-md-4">
+              <%= check_box_tag "q[room_type_eq_any][]","個室" %> 個室
+            </div>
+            <div class="col-md-4">
+              <%= check_box_tag "q[room_type_eq_any][]","シェアルーム" %> シェアルーム
+            </div>
+          </div>
+                        
+          <hr>
+                        
+          <div class="row">
+            <div class="col-md-4 select">
+              <div class="form-group">
+                <label>何人？</label>
+                <%= f.select :accommodate, [["１人",1], ["２人",2],
+                  ["３人",3], ["４人",4] ,["５人",5],
+                  ["６人",6]], prompt:"選択してください。", class:"form-control" %>
+              </div>
+            </div>
+                            
+            <div class="col-md-4 select">
+              <div class="form-group">
+                <label>ベッドルーム数</label>
+                <%= f.select :bed_room, [["1",1],["2",2],
+                  ["3",3], ["4",4]], prompt:"選択してください。", class:"form-control" %>
+              </div>
+            </div>
+                            
+            <div class="col-md-4 select">
+              <div class="form-group">
+                <label>バスルーム数</label>
+                <%= f.select :bath_room, [["1",1],["2",2],
+                  ["3",3], ["4",4]], prompt:"選択してください。", class:"form-control" %>
+              </div>
+            </div>
+          </div>
+                        
+          <hr>
+                        
+          <div class="row">
+            <div class="col-md-4">
+              <%= check_box_tag "q[is_wifi_eq]", true %> Wifi
+            </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_tv_eq]", true %> テレビ
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_closet_eq]", true %> タンス
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_shampoo_eq]", true %> シャンプー
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_kitchen_eq]", true %> キッチン
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_breakfast_eq]", true %> 朝食
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_heating_eq]", true %> 暖房設備
+          </div>
+          <div class="col-md-4">
+            <%= check_box_tag "q[is_air_eq]", true %> エアコン
+          </div>
+        </div>
+                        
+        <br>
+                        
+        <div class="row">
+          <%= f.submit "検索する", class:"btn btn-primary" %>
+        </div>
+                        
+                        
+      <% end %>
+                    
+      <hr>
+                    
+      <div class="row">
+        <% if @arrRooms.empty? %>
+          ヒット件数：０　別の条件で検索をしてください。
+        <% else %>
+          <% @arrRooms.each do |room| %>
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <div class="panel-heading preview">
+                  <%= image_tag room.photos[0].image.url(:medium) if room.photos.length > 0 %>
+                </div>
+                <div class="panel-body">
+                  <%= image_tag avatar_url(room.user), class:"img-circle avatar-small" %>
+                  <%= link_to room.listing_name, room %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+                    
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+  $(function() {
+    $('#start_date').datepicker({
+      dateFormat: 'dd-mm-yy',
+      monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+      dayNamesMin: ['日', '月', '火', '水', '木', '金', '土'],
+      minDate: 0,
+      maxDate: '3m',
+      onSelect: function(selected) {
+        var newdate = new Date($("#start_date").datepicker("getDate"));
+        newdate.setDate(newdate.getDate() + 1);
+        $('#end_date').datepicker("option","minDate", newdate);
+      }
+    })
+            
+    $('#end_date').datepicker({
+      dateFormat: 'dd-mm-yy',
+      monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+      dayNamesMin: ['日', '月', '火', '水', '木', '金', '土'],
+      minDate: 0,
+      maxDate: '3m',
+      onSelect: function(selected) {
+        $('#start_date').datepicker("option", "maxDate", selected);
+      }
+    });
+  })
+</script>
