@@ -1,0 +1,34 @@
+<div class="row"> 
+  <div class="col-md-3 text-center">
+    <%= image_tag avatar_url(@other), class: "img-circle avatar-medium" %><br>
+    <strong><%= @other.fullname %></strong>
+    <%= link_to "プロフィール", @other, class: "btn btn-default wide" %>
+  </div>
+     
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= @other.fullname %>さん　との会話
+      </div>
+      <div class="panel-body">
+        <div class="container">
+          <%= form_for [@conversation, @conversation.messages.new] do |f| %>
+            <div class="form-group">
+              <%= f.text_area :content, placeholder: "送信メッセージ", class: "form-control" %>
+            </div>
+            
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            
+            <div class="actions">
+              <%= f.submit "メッセージを送信", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+    <div id="chat">
+      <%= render 'messages' %>
+    </div>
+  </div>
+</div>
