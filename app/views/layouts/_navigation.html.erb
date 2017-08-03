@@ -23,8 +23,12 @@
         
         <li>
           <%= link_to new_room_path do %>
-            <i class="fa fa-home fa-lg"></i> ホストになる
+            ホストになる
           <% end %>
+        </li>
+        
+        <li>
+          <%= link_to conversations_path do %>Messages<% end %>
         </li>
         
         <% if (!user_signed_in?) %>

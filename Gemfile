@@ -51,6 +51,7 @@ gem 'jbuilder', '~> 2.5'
   
   gem 'jquery-ui-rails'
   gem 'ransack'
+  gem 'rails-timeago'
   
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
