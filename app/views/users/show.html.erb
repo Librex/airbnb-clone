@@ -11,8 +11,11 @@
     <div class="panel panel-default">
       <div class="panel-heading">登録情報</div>        
       <div class="panel-body">
-        メールアドレス: <%= @user.email %><br>
-        電話番号: <%= @user.phone_number %>
+        <% if @user.confirmed_at %>
+          確認済み：Email
+        <% else %>
+          未確認：Email
+        <% end %>
       </div>
     </div>
   </div>
