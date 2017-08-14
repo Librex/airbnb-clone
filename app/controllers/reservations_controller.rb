@@ -21,8 +21,11 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = current_user.reservations.create(reservation_params)       
-    redirect_to @reservation.room, notice: "予約を承りました"
+    @reservation = current_user.reservations.create(reservation_params)
+      if @reservation.save
+        AppMailer.new_reservation(Room.find(@reservation.room_id), @reservation).deliver_now
+        redirect_to @reservation.room, notice: "ご予約を承りました。"
+      end
   end
 
   def your_trips

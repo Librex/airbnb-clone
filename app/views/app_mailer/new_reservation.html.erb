@@ -1,0 +1,3 @@
+<p>ようこそ <%= @user.fullname %> 様!</p>
+     
+<p> (<%= @room.listing_name %>)に対して、<%= @reservation.start_date.strftime('%d.%m.%y') %> から <%= @reservation.end_date.strftime('%d.%m.%y') %>　までの予約を受け付けました。</p>
