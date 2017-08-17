@@ -5,9 +5,18 @@ Rails.application.configure do
     :path => ':id/:style/:filename'
   })
   
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => 'shrouded-meadow-47707.herokuapp.com', :protocol => 'https'}
-
+config.action_mailer.default_url_options = { host: 'shrouded-meadow-47707.herokuapp.com' }
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.smtp_settings =
+{
+ user_name: ENV['SENDGRID_USERNAME'],
+ password: ENV['SENDGRID_PASSWORD'],
+ domain: "heroku.com",
+ address: "smtp.sendgrid.net",
+ port: 587,
+ authentication: :plain,
+ enable_starttls_auto: true
+}
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

@@ -71,7 +71,7 @@
             <div class="col-md-4 select">
               <div class="form-group">
                 <label>何人？</label>
-                <%= f.select :accommodate, [["１人",1], ["２人",2],
+                <%= f.select :accommodate_gteq, [["１人",1], ["２人",2],
                   ["３人",3], ["４人",4] ,["５人",5],
                   ["６人",6]], prompt:"選択してください。", class:"form-control" %>
               </div>
@@ -80,7 +80,7 @@
             <div class="col-md-4 select">
               <div class="form-group">
                 <label>ベッドルーム数</label>
-                <%= f.select :bed_room, [["1",1],["2",2],
+                <%= f.select :bed_room_gteq, [["1",1],["2",2],
                   ["3",3], ["4",4]], prompt:"選択してください。", class:"form-control" %>
               </div>
             </div>
@@ -88,7 +88,7 @@
             <div class="col-md-4 select">
               <div class="form-group">
                 <label>バスルーム数</label>
-                <%= f.select :bath_room, [["1",1],["2",2],
+                <%= f.select :bath_room_gteq, [["1",1],["2",2],
                   ["3",3], ["4",4]], prompt:"選択してください。", class:"form-control" %>
               </div>
             </div>
