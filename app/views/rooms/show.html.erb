@@ -53,44 +53,7 @@
             </div>
           </div>
         </div>
-        
-        <!-- 説明 -->
-        <div class="row">
-          <div class="col-md-12">
-            <h2>この施設について</h2>
-            <p><%= @room.summary %></p>
-          </div>
-        </div>
-        
-        <br>
-
-        <!-- 設備 -->
-        <div class="row">
-          <div class="col-md-2">
-            <p>設備</p>
-          </div>
-        <div class="col-md-10">
-          <div class="row">
-            <div class="col-md-6">
-              <ul class="equipments">
-                <li class="<%= 'text-line-through' if !@room.is_wifi %>">Wifi</li>
-                <li class="<%= 'text-line-through' if !@room.is_tv %>">テレビ</li>
-                <li class="<%= 'text-line-through' if !@room.is_closet %>">クローゼット</li>
-                <li class="<%= 'text-line-through' if !@room.is_shampoo %>">シャンプー</li>
-              </ul>
-            </div>
-            <div class="col-md-6">
-              <ul class="equipments">
-                <li class="<%= 'text-line-through' if !@room.is_kitchen %>">キッチン</li>
-                <li class="<%= 'text-line-through' if !@room.is_breakfast %>">朝食</li>
-                <li class="<%= 'text-line-through' if !@room.is_heating %>">暖房設備</li>
-                <li class="<%= 'text-line-through' if !@room.is_air %>">エアコン</li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
 
       <div class="col-md-4">
         <!-- 予約フォーム -->
@@ -98,9 +61,41 @@
       </div>    
     </div>
 
-    <br>
-    <hr>
-    
+    <!-- 説明 -->
+    <div class="row">
+      <div class="col-md-12">
+        <h2>この施設について</h2>
+        <p><%= @room.summary %></p>
+      </div>
+    </div>
+
+    <!-- 設備 -->
+    <div class="row">
+      <div class="col-md-2">
+        <p>設備</p>
+      </div>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="equipments">
+              <li class="<%= 'text-line-through' if !@room.is_wifi %>">Wifi</li>
+              <li class="<%= 'text-line-through' if !@room.is_tv %>">テレビ</li>
+              <li class="<%= 'text-line-through' if !@room.is_closet %>">クローゼット</li>
+              <li class="<%= 'text-line-through' if !@room.is_shampoo %>">シャンプー</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="equipments">
+              <li class="<%= 'text-line-through' if !@room.is_kitchen %>">キッチン</li>
+              <li class="<%= 'text-line-through' if !@room.is_breakfast %>">朝食</li>
+              <li class="<%= 'text-line-through' if !@room.is_heating %>">暖房設備</li>
+              <li class="<%= 'text-line-through' if !@room.is_air %>">エアコン</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
    <!-- Carousel -->
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
