@@ -22,10 +22,30 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = current_user.reservations.create(reservation_params)
-      if @reservation.save
+     
+    if @reservation.persisted?
+      @payment = Payment.new({ email: User.find(@reservation.user_id).email, token: params[:payment]["token"], reservation_id: @reservation.id, amount: @reservation.total })
+      
+      begin
+      @payment.process_payment
+      
+      if @payment.save
         AppMailer.new_reservation(Room.find(@reservation.room_id), @reservation).deliver_now
-        redirect_to @reservation.room, notice: "ご予約を承りました。"
+        redirect_to @reservation.room, notice: "予約を承りました。"
       end
+                    
+      rescue Exception  
+    
+      @reservation.destroy
+     
+      puts '支払い処理に失敗しました。'
+    
+      redirect_to @reservation.room, notice: "支払いが拒否されました。"
+    end
+     
+    else
+      redirect_to @reservation.room, notice: "あなたの予約は失敗しました"
+    end
   end
 
   def your_trips
@@ -38,7 +58,7 @@ class ReservationsController < ApplicationController
      
   private
     def reservation_params         
-      params.require(:reservation).permit(:start_date, :end_date, :price, :total, :room_id)     
+      params.require(:reservation).permit(:start_date, :end_date, :price, :total, :room_id, :payment)     
     end
 
     def is_conflict(start_date, end_date)
